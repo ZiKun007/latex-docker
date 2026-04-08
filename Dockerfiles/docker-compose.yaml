@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  ros2:
+    build:
+      context: .
+      args:
+        ROS_DISTRO: humble           # 如需 iron/jazzy 可改
+    container_name: ros2-gui
+    user: "0:0"                      # 运行期使用 root
+    ports:
+      - "6080:80"                    # http://localhost:6080
+      - "5901:5901"                  # 可选：VNC 客户端
+    shm_size: "1g"
+    environment:
+      - TZ=Asia/Singapore
+      - DISPLAY=:1                   # noVNC/Xfce 虚拟显示
+    volumes:
+      - ./ros2_ws:/home/ubuntu/ros2_ws
+    restart: unless-stopped

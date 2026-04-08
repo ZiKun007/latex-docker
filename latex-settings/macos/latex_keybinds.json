@@ -1,0 +1,130 @@
+// 将键绑定放在此文件中以覆盖默认值auto[]
+[
+    // ==========================================
+    // LaTeX Workshop Commands
+    // ==========================================
+    {
+        "key": "cmd+r",
+        "command": "latex-workshop.recipes",
+        "when": "editorLangId == 'latex'"
+    },
+    {
+        // Changed from bare 'ctrl' to avoid OS conflicts
+        "key": "ctrl+cmd+s", 
+        "command": "latex-workshop.synctex",
+        "when": "editorTextFocus && editorLangId == 'latex'"
+    },  
+
+    // ==========================================
+    // LaTeX Snippets (Restricted to LaTeX files)
+    // ==========================================
+
+    // Display Math
+    {
+        "key": "ctrl+m",
+        "command": "editor.action.insertSnippet",
+        "when": "editorTextFocus && editorLangId == 'latex'",
+        "args": {
+            "snippet": "$$\n\t${TM_SELECTED_TEXT$1}\n$$$0" 
+        }
+    },
+    // Inline Math (Removed awkward spacing)
+    {
+        "key": "ctrl+shift+m",
+        "command": "editor.action.insertSnippet",
+        "when": "editorTextFocus && editorLangId == 'latex'",
+        "args": {
+            "snippet": "$${TM_SELECTED_TEXT$1}$$0" 
+        }
+    },
+    // Math Bold (\mathbf)
+    {
+        "key": "ctrl+shift+b",
+        "command": "editor.action.insertSnippet",
+        "when": "editorTextFocus && editorLangId == 'latex'",
+        "args": {
+            "snippet": "\\mathbf{${TM_SELECTED_TEXT$1}}$0"
+        }
+    },
+    // Bold Math (\bm) - Requires \usepackage{bm}
+    {
+        "key": "ctrl+b",
+        "command": "editor.action.insertSnippet",
+        "when": "editorTextFocus && editorLangId == 'latex'",
+        "args": {
+            "snippet": "\\bm{${TM_SELECTED_TEXT$1}}$0" 
+        }
+    },
+    // Subscript
+    {
+        "key": "ctrl+d",
+        "command": "editor.action.insertSnippet",
+        "when": "editorTextFocus && editorLangId == 'latex'",
+        "args": {
+            "snippet": "_{$1}$0" 
+        }
+    },
+    // Superscript
+    {
+        "key": "ctrl+u",
+        "command": "editor.action.insertSnippet",
+        "when": "editorTextFocus && editorLangId == 'latex'",
+        "args": {
+            "snippet": "^{$1}$0" 
+        }
+    },
+    // Square Root
+    {
+        "key": "ctrl+q",
+        "command": "editor.action.insertSnippet",
+        "when": "editorTextFocus && editorLangId == 'latex'",
+        "args": {
+            "snippet": "\\sqrt{${TM_SELECTED_TEXT$1}}$0" 
+        }
+    },
+    // Fraction
+    {
+        "key": "ctrl+f",
+        "command": "editor.action.insertSnippet",
+        "when": "editorTextFocus && editorLangId == 'latex'",
+        "args": {
+            "snippet": "\\frac{${TM_SELECTED_TEXT$1}}{$2}$0" 
+        }
+    },
+    // Partial Derivative
+    {
+        "key": "ctrl+p",
+        "command": "editor.action.insertSnippet",
+        "when": "editorTextFocus && editorLangId == 'latex'",
+        "args": {
+            "snippet": "\\partial " 
+        }
+    },
+    // Math Roman (\mathrm)
+    {
+        "key": "ctrl+shift+r",
+        "command": "editor.action.insertSnippet",
+        "when": "editorTextFocus && editorLangId == 'latex'",
+        "args": {
+            "snippet": "\\mathrm{${TM_SELECTED_TEXT$1}}$0" 
+        }
+    },
+    // Summation
+    {
+        "key": "ctrl+s",
+        "command": "editor.action.insertSnippet",
+        "when": "editorTextFocus && editorLangId == 'latex'",
+        "args": {
+            "snippet": "\\sum_{$1}^{$2}$0"
+        }
+    },
+    // Equation Environment
+    {
+        "key": "ctrl+e",
+        "command": "editor.action.insertSnippet",
+        "when": "editorTextFocus && editorLangId == 'latex'",
+        "args":{
+            "snippet":"\\begin{equation}\n\t${TM_SELECTED_TEXT$1}\n\\end{equation}\n$0"
+        } 
+    }
+]

@@ -1,0 +1,170 @@
+{
+    "\\bmatrix": {
+        "prefix": "bmatrix",
+        "body": [
+            "\\begin{bmatrix}",
+            "\t$1",
+            "\\end{bmatrix}$0"
+        ],
+        "description": "矩阵 (bmatrix)"
+    },
+
+    "figure": {
+        "prefix": "figure",
+        "body": [
+            "\\begin{figure}[htbp]",
+            "\t\\centering",
+            "\t\\includegraphics[width=${1:0.8}\\textwidth]{${2:image_path}}",
+            "\t\\caption{${3:caption_text}}",
+            "\t\\label{fig:${4:label_name}}",
+            "\\end{figure}",
+            "$0"
+        ],
+        "description": "单张图片环境"
+    },
+
+    "multifigure": {
+        "prefix": "multifigure",
+        "body": [
+            "\\begin{figure}[htbp]",
+            "\t\\centering",
+            "\t% 请确保导言区使用了 \\usepackage{subfig}",
+            "\t\\subfloat[${1:子图1标题}]{\\includegraphics[width=${2:0.32}\\textwidth]{${3:image1_path}}}",
+            "\t\\subfloat[${4:子图2标题}]{\\includegraphics[width=${5:0.32}\\textwidth]{${6:image2_path}}}",
+            "\t\\subfloat[${7:子图3标题}]{\\includegraphics[width=${8:0.32}\\textwidth]{${9:image3_path}}}",
+            "\t\\caption{${10:总标题}}",
+            "\t\\label{fig:${11:main_label}}",
+            "\\end{figure}",
+            "$0"
+        ],
+        "description": "多子图环境 (subfig)"
+    },
+
+    "lstlisting": {
+        "prefix": "lstlisting",
+        "body": [
+            "\\begin{lstlisting}[language=${1:C++}, caption=${2:caption_text}, label=lst:${3:label_name}]",
+            "\t$0",
+            "\\end{lstlisting}"
+        ],
+        "description": "代码块环境 (listings)"
+    },
+
+    "table1": {
+        "prefix": "table1",
+        "body": [
+            "\\begin{table}[htbp]",
+            "\t\\renewcommand\\arraystretch{1.2} % 设置行高",
+            "\t\\centering",
+            "\t\\caption{${1:表格标题}} \\label{tab:${2:label_name}}",
+            "\t\\begin{tabular}{*{${3:3}}{c}} % ${3}个c代表列数及居中",
+            "\t\t\\toprule[1.5pt]",
+            "\t\t\\diagbox{序号}{列名} & 参数 & 定义 \\\\\\\\ % 需宏包diagbox",
+            "\t\t\\midrule[1pt]",
+            "\t\t1 & ${4:toe} & ${5:星历参考时刻} \\\\\\\\",
+            "\t\t\\midrule[0.5pt]",
+            "\t\t16 & ${6:Cis} & ${7:轨道倾角正弦调和校正振幅心率} \\\\\\\\",
+            "\t\t\\bottomrule[1.5pt]",
+            "\t\\end{tabular}",
+            "\\end{table}",
+            "$0"
+        ],
+        "description": "带对角线的三线表"
+    },
+
+    "table2": {
+        "prefix": "table2",
+        "body": [
+            "\\begin{table}[htbp]",
+            "\t\\renewcommand\\arraystretch{1.2}",
+            "\t\\centering",
+            "\t\\caption{${1:表格标题}} \\label{tab:${2:label_name}}",
+            "\t% 定义M列类型，使内容垂直居中并自动换行",
+            "\t\\newcolumntype{M}[1]{>{\\centering\\arraybackslash}m{#1}}",
+            "\t\\begin{tabular}{M{0.2\\textwidth}M{0.2\\textwidth}M{0.4\\textwidth}}",
+            "\t\t\\toprule[1.5pt]",
+            "\t\t序号 & 参数 & 定义 \\\\\\\\",
+            "\t\t\\midrule[1pt]",
+            "\t\t1 & toe & 星历参考时刻 \\\\\\\\",
+            "\t\t\\midrule[0.5pt]",
+            "\t\t16 & Cis & 轨道倾角正弦调和校正振幅心率 \\\\\\\\",
+            "\t\t\\bottomrule[1.5pt]",
+            "\t\\end{tabular}",
+            "\\end{table}",
+            "$0"
+        ],
+        "description": "定宽居中自动换行表格"
+    },
+
+    "multiTable": {
+        "prefix": "multiTable",
+        "body": [
+            "\\begin{table}[htbp]",
+            "\t\\centering",
+            "\t\\caption{${1:表格标题}}",
+            "\t\\label{tab:${2:label_name}}",
+            "\t\\begin{tabular}{*{5}{c}}",
+            "\t\t\\toprule",
+            "\t\t\\multirow{2}{*}{姓名} & \\multicolumn{2}{c}{文科} & \\multicolumn{2}{c}{理科} \\\\\\\\",
+            "\t\t\\cmidrule(lr){2-5} % lr表示与内容左右对齐",
+            "\t\t~ & 历史 & 文学 & 物理 & 化学 \\\\\\\\",
+            "\t\t\\midrule",
+            "\t\t张三 & A & B & A & A \\\\\\\\",
+            "\t\t\\bottomrule",
+            "\t\\end{tabular}",
+            "\\end{table}",
+            "$0"
+        ],
+        "description": "多行多列表格 (multirow/multicolumn)"
+    },
+
+    "left{": {
+        "prefix": "left{",
+        "body": [
+            "\\begin{equation}\\label{eq:${1:label_name}}",
+            "\t\\left\\{",
+            "\t\\begin{aligned}",
+            "\t\t$2 &= $3 \\\\\\\\",
+            "\t\t$4 &= $5",
+            "\t\\end{aligned}",
+            "\t\\right.",
+            "\\end{equation}",
+            "$0"
+        ],
+        "description": "左大括号方程组"
+    },
+
+    "aligned": {
+        "prefix": "aligned",
+        "body": [
+            "\\begin{aligned}",
+            "\t$1 &= $2 \\\\\\\\",
+            "\t$3 &= $4",
+            "\\end{aligned}",
+            "$0"
+        ],
+        "description": "对齐环境 (多行公式)"
+    },
+
+    "gathered": {
+        "prefix": "gathered",
+        "body": [
+            "\\begin{equation}",
+            "\t\\begin{gathered}",
+            "\t\t$1 \\\\\\\\",
+            "\t\t$2",
+            "\t\\end{gathered}",
+            "\\end{equation}",
+            "$0"
+        ],
+        "description": "居中多行公式"
+    },
+
+    "codeinline": {
+        "prefix": "codeinline",
+        "body": [
+            "\\colorbox{gray!10}{\\lstinline[basicstyle=\\color{violet}]|${1:code}|}$0"
+        ],
+        "description": "行内带背景色代码"
+    }
+}

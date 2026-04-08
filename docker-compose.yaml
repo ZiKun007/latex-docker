@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  latex-env:
+    build: .
+    image: my-latex-env:latest
+    container_name: latex_workspace
+    volumes:
+      # 保留绑定挂载：用于写论文源码，方便你在宿主机用 VS Code 编辑
+      - C:/Workspace/latex/klatex:/workspace
+      # 使用具名卷挂载：挂载你创建的 kdocker 卷到容器内的某个目录
+      # 假设你把它挂载到 /data 目录
+      # - kdocker:/data
+    tty: true
+    stdin_open: true
+
+# 【关键点】如果创建的 kdocker 卷，则必须声明外部卷
+# volumes:
+#   kdocker:
+#     external: true
