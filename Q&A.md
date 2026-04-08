@@ -100,3 +100,67 @@ apt update
 apt install ttf-mscorefonts-installer
 fc-cache -f -v
 ```
+
+---
+
+## 4. 如何让DockerDestop访问代理，如何在WSL2中开启代理
+
+如果你在 Windows 宿主机上开启了代理软件（例如 Clash, v2ray 等），你可以直接让 Docker 走这个代理：
+
+1. 打开 Docker Desktop，点击右上角的 ⚙️ Settings (齿轮图标)。 在左侧导航栏选择 Resources -> Proxies。 
+    开启 Manual proxy configuration。在 Web Server (HTTP) 和 Secure Web Server (HTTPS) 中填入你的宿主机代理地址。
+
+2. 注意：因为 Docker 运行在虚拟机中，不要填 127.0.0.1，请填入特殊的宿主机域名：
+    - 格式通常为：http://host.docker.internal:7890（请把 7890 换成你实际代理软件的本地端口）。
+    - 在 Bypass proxy settings... 框中填入：localhost,127.0.0.1,*.local,host.docker.internal 以避免本地流量被误拦截。
+
+3. 点击右下角的 Apply & restart。
+
+[注意] 如果不启用 "Manual proxy configuration" 也能拉取基础镜像，那就不用进行上面的步骤。可以在Windows中拉取基础镜像，然后再在WSL2中构建新的镜像
+
+
+下面是在WSL2中配置代理的方法：
+1. 配置WSL2的`.wslconfig`文件，添加以下内容：
+```bash
+[wsl2]
+# 开启镜像网络模式
+networkingMode=mirrored
+# 自动同步 Windows 的代理设置（可选）
+autoProxy=true
+# 允许 WSL 访问 Windows 的本地服务
+hostAddressLoopback=true
+```
+
+2. 启用代理软件的"允许局域网连接"
+
+3. 在Windows终端中运行命令`reg query "HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" | findstr Proxy`，查看代理配置, 找到ProxyServer字段对应的端口号。
+
+2. 在WSL2的`.bashrc`或`.zshrc`中添加以下内容，之后使用`proxy_on`开启代理，使用`proxy_off`关闭代理。
+
+```bash
+# 获取 WSL2 宿主机 (Windows) 的 IP 地址
+# export hostip=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}')
+export hostip="127.0.0.1"
+
+# 代理端口，请根据你的软件实际端口修改 (比如 7890)
+export proxy_port="7890"
+
+# 定义开启代理的函数
+proxy_on() {
+    export http_proxy="http://${hostip}:${proxy_port}"
+    export https_proxy="http://${hostip}:${proxy_port}"
+    export all_proxy="socks5://${hostip}:${proxy_port}"
+
+    # 排除本地流量，防止 VS Code Server 连接断开
+    export no_proxy="localhost,127.0.0.1,::1,host.docker.internal"
+    echo -e "已开启代理: http://${hostip}:${proxy_port}"
+}
+
+# 定义关闭代理的函数
+proxy_off() {
+    unset http_proxy
+    unset https_proxy
+    unset all_proxy
+    echo -e "已关闭代理"
+}
+```

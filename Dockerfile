@@ -1,10 +1,21 @@
 # 1. 基础镜像
 FROM ubuntu:24.04
 
+ARG HTTP_PROXY
+ARG HTTPS_PROXY
+ARG NO_PROXY
+
 # 设置非交互式安装，避免安装过程卡住
 ENV DEBIAN_FRONTEND=noninteractive
 ENV LANG=C.UTF-8
 ENV LC_ALL=C.UTF-8
+
+ENV HTTP_PROXY=${HTTP_PROXY}
+ENV HTTPS_PROXY=${HTTPS_PROXY}
+ENV NO_PROXY=${NO_PROXY}
+ENV http_proxy=${HTTP_PROXY}
+ENV https_proxy=${HTTPS_PROXY}
+ENV no_proxy=${NO_PROXY}
 
 # 2. 系统基础依赖与 LaTeX 环境 (最耗时、最不易变动，放在最前面)
 RUN apt-get update && \
@@ -33,7 +44,6 @@ RUN apt-get update && \
 # 3. 配置字体 (较少变动)
 # 将本地的 fonts 目录拷贝到系统的中文字体目录下
 COPY fonts /usr/share/fonts/custom_latex_fonts
-# 统一刷新一次系统字体缓存，包含刚安装的 Noto 和 mscorefonts
 RUN fc-cache -fv
 
 # 4. 配置个人终端环境 (最容易变动，放在最后)
