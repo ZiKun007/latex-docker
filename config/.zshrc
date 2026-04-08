@@ -73,4 +73,6 @@ alias cls="clear"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-[[ ! -f ~/.tmux.conf ]] || tmux source-file ~/.tmux.conf
+if [[ -f ~/.tmux.conf ]]; then
+  tmux source-file ~/.tmux.conf
+fi

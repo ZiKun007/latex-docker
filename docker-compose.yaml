@@ -2,21 +2,10 @@ services:
   latex-env:
     build:
       context: .
-      dockerfile: Dockerfile
-      args:
-        HTTP_PROXY: http://host.docker.internal:12334
-        HTTPS_PROXY: http://host.docker.internal:12334
-        NO_PROXY: localhost,127.0.0.1,host.docker.internal
+      dockerfile: latex.Dockerfile
     image: latex-docker:u24
     container_name: latex_workspace
-    environment:
-      HTTP_PROXY: http://host.docker.internal:12334
-      HTTPS_PROXY: http://host.docker.internal:12334
-      NO_PROXY: localhost,127.0.0.1,host.docker.internal
-      http_proxy: http://host.docker.internal:12334
-      https_proxy: http://host.docker.internal:12334
-      no_proxy: localhost,127.0.0.1,host.docker.internal
     volumes:
-      - C:/Workspace/latex/klatex:/workspace
+      - ~/latex/klatex:/workspace
     tty: true
     stdin_open: true
