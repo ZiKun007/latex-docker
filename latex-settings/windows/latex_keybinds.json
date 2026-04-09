@@ -25,7 +25,7 @@
         "command": "editor.action.insertSnippet",
         "when": "editorTextFocus && editorLangId == 'latex'",
         "args": {
-            "snippet": "$$\n\t${TM_SELECTED_TEXT$1}\n$$$0" 
+            "snippet": "$$\n\t${1:$TM_SELECTED_TEXT}\n$$$0" 
         }
     },
     // Inline Math (Removed awkward spacing)
@@ -34,7 +34,7 @@
         "command": "editor.action.insertSnippet",
         "when": "editorTextFocus && editorLangId == 'latex'",
         "args": {
-            "snippet": "$${TM_SELECTED_TEXT$1}$$0" 
+            "snippet": "$${1:$TM_SELECTED_TEXT}$$0" 
         }
     },
     // Math Bold (\mathbf)
@@ -43,7 +43,7 @@
         "command": "editor.action.insertSnippet",
         "when": "editorTextFocus && editorLangId == 'latex'",
         "args": {
-            "snippet": "\\mathbf{${TM_SELECTED_TEXT$1}}$0"
+            "snippet": "\\mathbf{${1:$TM_SELECTED_TEXT}}$0"
         }
     },
     // Bold Math (\bm) - Requires \usepackage{bm}
@@ -52,7 +52,7 @@
         "command": "editor.action.insertSnippet",
         "when": "editorTextFocus && editorLangId == 'latex'",
         "args": {
-            "snippet": "\\bm{${TM_SELECTED_TEXT$1}}$0" 
+            "snippet": "\\bm{${1:$TM_SELECTED_TEXT}}$0" 
         }
     },
     // Subscript
@@ -79,7 +79,7 @@
         "command": "editor.action.insertSnippet",
         "when": "editorTextFocus && editorLangId == 'latex'",
         "args": {
-            "snippet": "\\sqrt{${TM_SELECTED_TEXT$1}}$0" 
+            "snippet": "\\sqrt{${1:$TM_SELECTED_TEXT}}$0" 
         }
     },
     // Fraction
@@ -89,7 +89,7 @@
         "when": "editorTextFocus && editorLangId == 'latex'",
         "args": {
             // Allows selecting the numerator, then tabbing to denominator
-            "snippet": "\\frac{${TM_SELECTED_TEXT$1}}{$2}$0" 
+            "snippet": "\\frac{${1:$TM_SELECTED_TEXT}}{$2}$0" 
         }
     },
     // Partial Derivative
@@ -107,7 +107,7 @@
         "command": "editor.action.insertSnippet",
         "when": "editorTextFocus && editorLangId == 'latex'",
         "args": {
-            "snippet": "\\mathrm{${TM_SELECTED_TEXT$1}}$0" 
+            "snippet": "\\mathrm{${1:$TM_SELECTED_TEXT}}$0" 
         }
     },
     // Summation
@@ -125,7 +125,7 @@
         "command": "editor.action.insertSnippet",
         "when": "editorTextFocus && editorLangId == 'latex'",
         "args":{
-            "snippet":"\\begin{equation}\n\t${TM_SELECTED_TEXT$1}\n\\end{equation}\n$0"
+            "snippet":"\\begin{equation}\n\t${1:$TM_SELECTED_TEXT}\n\\end{equation}\n$0"
         } 
     }
 ]
